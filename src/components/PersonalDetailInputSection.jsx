@@ -1,4 +1,4 @@
-export default function PersonalDetail({ person, setPerson }) {
+export default function PersonalDetailInputSection({ person, setPerson }) {
   function handleChange(e) {
     const fieldName = e.target.id;
     const value = e.target.value;
@@ -11,22 +11,25 @@ export default function PersonalDetail({ person, setPerson }) {
 
     const propertyName = fieldMapping[fieldName];
 
-    setPerson((prevPerson) => ({
-      ...prevPerson,
-      [propertyName]: value,
-    }));
+    if (propertyName) {
+      setPerson((prevPerson) => ({
+        ...prevPerson,
+        [propertyName]: value,
+      }));
+    }
   }
 
   return (
     <>
       <h1 className="person-header-text">Personal Detail</h1>
       <div>
-        <label htmlFor="personName">Personal Details:</label>
+        <label htmlFor="personName">Name:</label>
         <input
           type="text"
           id="personName"
           value={person.name}
           onChange={handleChange}
+          required
         />
       </div>
       <div>
@@ -36,6 +39,7 @@ export default function PersonalDetail({ person, setPerson }) {
           id="email"
           value={person.email}
           onChange={handleChange}
+          required
         />
       </div>
       <div>
@@ -45,6 +49,7 @@ export default function PersonalDetail({ person, setPerson }) {
           id="phoneNumber"
           value={person.phoneNumber}
           onChange={handleChange}
+          required
         />
       </div>
     </>

@@ -69,8 +69,17 @@ h6 {
 }
 
 #root-container {
-  /* max-width: 1024px; */
+  max-width: 1024px;
   margin: 0 auto;
-  /* display: flex;
-  justify-content: center; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.person-detail-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
 }
