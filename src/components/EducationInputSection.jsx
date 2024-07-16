@@ -1,6 +1,4 @@
-export default function EducationInputSection({ person, setPerson, edu }) {
-  console.log(person.education);
-
+export default function EducationInputSection({ setPerson, edu }) {
   function handleChange(e) {
     const { id, value } = e.target;
     setPerson((prevPerson) => ({
@@ -28,6 +26,7 @@ export default function EducationInputSection({ person, setPerson, edu }) {
         <input
           type="text"
           id="schoolName"
+          name="schoolName"
           value={edu.schoolName}
           onChange={handleChange}
           required
@@ -38,6 +37,7 @@ export default function EducationInputSection({ person, setPerson, edu }) {
         <input
           type="text"
           id="degree"
+          name="schoolName"
           value={edu.degree}
           onChange={handleChange}
           required
@@ -48,6 +48,7 @@ export default function EducationInputSection({ person, setPerson, edu }) {
         <input
           type="date"
           id="startDate"
+          name="startDate"
           value={edu.startDate}
           onChange={handleChange}
           required
@@ -58,6 +59,7 @@ export default function EducationInputSection({ person, setPerson, edu }) {
         <input
           type="date"
           id="endDate"
+          name="endDate"
           value={edu.endDate}
           onChange={handleChange}
           required

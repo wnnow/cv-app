@@ -52,6 +52,16 @@ export default function PersonalDetailInputSection({ person, setPerson }) {
           required
         />
       </div>
+      <div>
+        <label htmlFor="professionalSummary">Professional Summary:</label>
+        <textarea
+          type="text"
+          id="professionalSummary"
+          value={person.professionalSummary}
+          onChange={handleChange}
+          required
+        ></textarea>
+      </div>
     </>
   );
 }
