@@ -84,10 +84,71 @@ input:focus {
 .input-container {
   width: 400px;
 }
+
 button {
+  -webkit-appearance: none;
+  border-radius: 0;
+  text-align: inherit;
+  background: none;
+  box-shadow: none;
+  padding: 0;
   cursor: pointer;
+  border: none;
+  color: inherit;
+  font: inherit;
 }
 
 input[type='checkBox'] {
   display: inline;
+}
+
+.cv-header-text {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.button-input-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.example-button,
+.clear-button,
+.delete-button,
+.submit-button,
+.add-more-input-button {
+  /* width: 150px; */
+  background-color: #f8f8f8;
+  border: 1px solid gray;
+  padding: 4px 8px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.example-button,
+.clear-button {
+  width: 150px;
+}
+
+.example-button:hover {
+  background-color: #141e46;
+  color: #ececec;
+}
+
+.clear-button:hover,
+.delete-button:hover {
+  background-color: #ff7777;
+  color: #ececec;
+}
+
+.delete-button,
+.submit-button {
+  width: 150px;
+}
+
+div:has(> input#currentlyEmployed) {
+  display: flex;
+  align-items: center;
+}
+#currentlyEmployed {
+  margin-right: 8px;
 }

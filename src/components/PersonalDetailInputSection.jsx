@@ -1,32 +1,22 @@
 export default function PersonalDetailInputSection({ person, setPerson }) {
   function handleChange(e) {
-    const fieldName = e.target.id;
-    const value = e.target.value;
+    const { id, value } = e.target;
 
-    const fieldMapping = {
-      personName: 'name',
-      email: 'email',
-      phoneNumber: 'phoneNumber',
-    };
-
-    const propertyName = fieldMapping[fieldName];
-
-    if (propertyName) {
-      setPerson((prevPerson) => ({
-        ...prevPerson,
-        [propertyName]: value,
-      }));
-    }
+    setPerson((prevPerson) => ({
+      ...prevPerson,
+      [id]: value,
+    }));
   }
 
   return (
     <>
-      <h1 className="person-header-text">Personal Detail</h1>
+      <h2 className="person-header-text">Personal Detail</h2>
       <div>
-        <label htmlFor="personName">Name:</label>
+        <label htmlFor="name">Name:</label>
         <input
           type="text"
-          id="personName"
+          id="name"
+          name="name"
           value={person.name}
           onChange={handleChange}
           required
@@ -37,6 +27,7 @@ export default function PersonalDetailInputSection({ person, setPerson }) {
         <input
           type="text"
           id="email"
+          name="email"
           value={person.email}
           onChange={handleChange}
           required
@@ -47,6 +38,7 @@ export default function PersonalDetailInputSection({ person, setPerson }) {
         <input
           type="text"
           id="phoneNumber"
+          name="phoneNumber"
           value={person.phoneNumber}
           onChange={handleChange}
           required
@@ -57,6 +49,7 @@ export default function PersonalDetailInputSection({ person, setPerson }) {
         <textarea
           type="text"
           id="professionalSummary"
+          name="professionalSummary"
           value={person.professionalSummary}
           onChange={handleChange}
           required

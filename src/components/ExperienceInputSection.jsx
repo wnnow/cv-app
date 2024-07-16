@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ExperienceInputSection({ setPerson, exp }) {
   const [working, setWorking] = useState(false);
 
+  useEffect(() => {
+    setWorking(exp.currentlyEmployed);
+  }, [exp.currentlyEmployed]);
+
   function handleChange(e) {
     const { id, checked, type, value } = e.target;
     const newValue = type === 'checked' ? checked : value;
-    console.log(checked);
+
     if (id === 'currentlyEmployed') {
       setWorking(checked);
 
@@ -43,7 +47,7 @@ export default function ExperienceInputSection({ setPerson, exp }) {
 
   return (
     <>
-      <button type="button" onClick={handleDelete}>
+      <button type="button" onClick={handleDelete} className="delete-button">
         Delete
       </button>
       <div>

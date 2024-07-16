@@ -5,6 +5,7 @@ import ComponentWrapper from './components/ComponentWrapper';
 import PersonalDetailInputSection from './components/PersonalDetailInputSection';
 import EducationInputSection from './components/EducationInputSection';
 import ExperienceInputSection from './components/ExperienceInputSection';
+import Resume from './components/Resume';
 
 function App() {
   const [person, setPerson] = useState({
@@ -15,6 +16,7 @@ function App() {
     education: [],
     workExperience: [],
   });
+  const [isSubmit, setSubmit] = useState(false);
 
   function addExampleInfo() {
     const defaultPerson = {
@@ -65,8 +67,40 @@ function App() {
     setPerson(defaultPerson);
   }
 
+  function validateForm() {
+    const { name, email, phoneNumber, education, workExperience } = person;
+
+    if (!name || !email || !phoneNumber) {
+      return false;
+    }
+
+    for (let edu of education) {
+      if (!edu.schoolName || !edu.degree || !edu.startDate || !edu.endDate) {
+        return false;
+      }
+    }
+
+    for (let exp of workExperience) {
+      if (
+        !exp.companyName ||
+        !exp.position ||
+        !exp.startDate ||
+        (exp.currentlyEmployed === false && !exp.endDate)
+      ) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
+    if (validateForm()) {
+      setSubmit(true);
+    } else {
+      alert('Please fill in all required fields.');
+    }
   }
 
   function addEducation() {
@@ -116,52 +150,88 @@ function App() {
       name: '',
       email: '',
       phoneNumber: '',
+      professionalSummary: '',
       education: [],
       workExperience: [],
     });
   }
+
   console.log(person);
 
   return (
     <>
-      <form action="#" className="input-container">
-        <button type="button" onClick={addExampleInfo}>
-          Example Resume
-        </button>
-
-        <button type="button" onClick={resetPerson}>
-          Clear Resume
-        </button>
-        <ComponentWrapper className="person-detail-container">
-          <PersonalDetailInputSection person={person} setPerson={setPerson} />
-        </ComponentWrapper>
-        <ComponentWrapper className="education-detail-input-container">
-          <h1 className="education-header-input-text">Education</h1>
-          {person.education.map((edu) => (
-            <EducationInputSection
-              key={edu.id}
-              edu={edu}
-              setPerson={setPerson}
-            />
-          ))}
-          <button type="button" onClick={addEducation}>
-            Add more education
-          </button>
-        </ComponentWrapper>
-        <ComponentWrapper className="experience-detail-input-container">
-          <h1 className="education-header-input-text">Work Experience</h1>
-          {person.workExperience.map((exp) => (
-            <ExperienceInputSection
-              key={exp.id}
-              exp={exp}
-              setPerson={setPerson}
-            />
-          ))}
-        </ComponentWrapper>
-        <button type="submit" onSubmit={handleSubmit}>
-          Submit
-        </button>
-      </form>
+      {isSubmit ? (
+        <Resume person={person} />
+      ) : (
+        <>
+          <h1 className="cv-header-text">CV Simple Template</h1>
+          <form action="#" className="input-container" id="input-container">
+            <div className="button-input-container">
+              <button
+                type="button"
+                onClick={addExampleInfo}
+                className="example-button"
+              >
+                Example Resume
+              </button>
+              <button
+                type="button"
+                onClick={resetPerson}
+                className="clear-button"
+              >
+                Clear Resume
+              </button>
+            </div>
+            <ComponentWrapper className="person-detail-container">
+              <PersonalDetailInputSection
+                person={person}
+                setPerson={setPerson}
+              />
+            </ComponentWrapper>
+            <ComponentWrapper className="education-detail-input-container">
+              <h2 className="education-header-input-text">Education</h2>
+              {person.education.map((edu) => (
+                <EducationInputSection
+                  key={edu.id}
+                  edu={edu}
+                  setPerson={setPerson}
+                />
+              ))}
+              <button
+                type="button"
+                onClick={addEducation}
+                className="add-more-input-button"
+              >
+                Add more education
+              </button>
+            </ComponentWrapper>
+            <ComponentWrapper className="experience-detail-input-container">
+              <h2 className="education-header-input-text">Work Experience</h2>
+              {person.workExperience.map((exp) => (
+                <ExperienceInputSection
+                  key={exp.id}
+                  exp={exp}
+                  setPerson={setPerson}
+                />
+              ))}
+              <button
+                type="button"
+                onClick={addExperience}
+                className="add-more-input-button"
+              >
+                Add more experience
+              </button>
+            </ComponentWrapper>
+            <button
+              type="button"
+              onClick={handleSubmit}
+              className="submit-button"
+            >
+              Submit
+            </button>
+          </form>
+        </>
+      )}
     </>
   );
 }

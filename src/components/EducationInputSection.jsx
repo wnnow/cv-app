@@ -18,7 +18,7 @@ export default function EducationInputSection({ setPerson, edu }) {
 
   return (
     <>
-      <button type="button" onClick={handleDelete}>
+      <button type="button" onClick={handleDelete} className="delete-button">
         Delete
       </button>
       <div>
