@@ -1,42 +1,37 @@
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
+.resume-container {
+  max-width: 1024px;
+  margin: 2em;
   padding: 2em;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
-.read-the-docs {
-  color: #888;
-} */
+.personal-detail-section {
+  margin-bottom: 1em;
+  border-bottom: 1px solid black;
+  padding-bottom: 1em;
+}
+
+.personal-detail-wrapper,
+.education-detail-section h2,
+.experience-detail-section h2,
+.education-wrapper,
+.experience-wrapper {
+  margin-bottom: 8px;
+}
+.professional-summary-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.school-name-date-wrapper,
+.experience-name-date-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.education-date,
+.experience-date {
+  font-weight: bold;
+}

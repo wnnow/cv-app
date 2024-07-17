@@ -115,7 +115,8 @@ input[type='checkBox'] {
 .clear-button,
 .delete-button,
 .submit-button,
-.add-more-input-button {
+.add-more-input-button,
+.edit-button {
   /* width: 150px; */
   background-color: #f8f8f8;
   border: 1px solid gray;
@@ -125,11 +126,13 @@ input[type='checkBox'] {
 }
 
 .example-button,
-.clear-button {
+.clear-button,
+.edit-button {
   width: 150px;
 }
 
-.example-button:hover {
+.example-button:hover,
+.edit-button:hover {
   background-color: #141e46;
   color: #ececec;
 }

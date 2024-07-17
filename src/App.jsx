@@ -161,7 +161,7 @@ function App() {
   return (
     <>
       {isSubmit ? (
-        <Resume person={person} />
+        <Resume person={person} setSubmit={setSubmit} />
       ) : (
         <>
           <h1 className="cv-header-text">CV Simple Template</h1>
