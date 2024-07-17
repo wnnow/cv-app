@@ -3,9 +3,16 @@ export default function Resume({ person, setSubmit }) {
     setSubmit(false);
   }
 
-  // function convertStringToYearFormat(timeStr) {
+  function convertStringToYearFormat(timeStr) {
+    if (timeStr === '') return 'Present';
+    const date = new Date(timeStr);
 
-  // }
+    let options = { year: 'numeric', month: 'short' };
+    let formattedDate = date
+      .toLocaleDateString('en-US', options)
+      .replace(',', '');
+    return formattedDate;
+  }
 
   return (
     <>
@@ -29,7 +36,8 @@ export default function Resume({ person, setSubmit }) {
               <div className="school-name-date-wrapper">
                 <h3>{edu.schoolName}</h3>
                 <div className="education-date">
-                  {edu.startDate} - {edu.endDate}
+                  {convertStringToYearFormat(edu.startDate)} -{' '}
+                  {convertStringToYearFormat(edu.endDate)}
                 </div>
               </div>
               <div>{edu.degree}</div>
@@ -43,8 +51,10 @@ export default function Resume({ person, setSubmit }) {
               <div className="experience-name-date-wrapper">
                 <h3>{exp.position}</h3>
                 <div className="experience-date">
-                  {exp.startDate} -{' '}
-                  {exp.endDate === '' ? 'Present' : exp.endDate}
+                  {convertStringToYearFormat(exp.startDate)} -{' '}
+                  {exp.endDate === ''
+                    ? 'Present'
+                    : convertStringToYearFormat(exp.endDate)}
                 </div>
               </div>
               <h4>{exp.companyName}</h4>
